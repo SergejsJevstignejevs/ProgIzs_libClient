@@ -8,7 +8,8 @@
 
 1. Download NodeJS
 2. Use VSCode or another IDE
-3. Start project with `npm start`
+3. Don't forget to start `libAPI`
+4. Start project with `npm start`
 
 # Getting Started with Create React App
 
