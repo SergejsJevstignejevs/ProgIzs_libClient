@@ -1,0 +1,107 @@
+@import "../../../styles/Variables.scss";
+
+.SignInPage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+
+    .Form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        height: 500px;
+        border-radius: 5px;
+        box-shadow: 0 0 3px 0 $main-beige;
+        background-color: $main-beige;
+
+        img {
+            display: flex;
+            flex-direction: row;
+            height: 96px;
+            width: 96px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            width: 250px;
+            font-size: 12px;
+            color: $main-dark-blue;
+            text-transform: uppercase;
+        }
+
+        input {
+            display: flex;
+            flex-direction: row;
+            width: 250px;
+            height: 40px;
+            border-radius: 5px;
+            padding: 5px 15px;
+            font-size: 17px;
+            color: $main-dark-blue;
+            background-color: $main-beige;
+            border: 2px solid $main-dark-blue;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            display: inline;
+            font-size: 16px;
+            width: 25px;
+            height: 25px;
+            margin-top: 0;
+            margin-right: 15px;
+        }
+
+        button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 15px;
+            padding: 10px 0;
+            width: 120px;
+            font-size: 18px;
+            border: 0;
+            border-radius: 10px;
+            color: $main-beige;
+            background-color: $main-dark-blue;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $sub-dark-blue;
+            }
+        }
+
+        .NotRegistred {
+            display: flex;
+            flex-direction: row;
+            margin-top: 15px;
+            color: $main-dark-blue;
+            text-transform: uppercase;
+            font-size: 16px;
+
+            a {
+                margin-left: 25px;
+                color: $main-blue;
+            }
+        }
+
+        .Error {
+            color: #e53e3e;
+        }
+    }
+
+}
