@@ -1,3 +1,15 @@
+# ProgIzs_libClient
+
+## Details
+
+**Language**: React JS
+
+## How to start
+
+1. Download NodeJS
+2. Use VSCode or another IDE
+3. Start project with `npm start`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
