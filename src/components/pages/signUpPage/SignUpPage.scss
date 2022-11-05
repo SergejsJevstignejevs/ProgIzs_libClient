@@ -21,7 +21,10 @@
         overflow-y: auto;
 
         h2 {
+            font-size: 22px;
+            text-transform: uppercase;
             color: $main-dark-blue;
+            margin-bottom: 15px;
         }
 
         label {

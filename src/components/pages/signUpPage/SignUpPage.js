@@ -1,5 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+
+import useLibApiService from "../../../hooks/libApiService";
 
 import "./SignUpPage.scss";
 
@@ -12,10 +15,13 @@ function SignUpPage () {
         email: "",
         password: "",
         isWorker: false,
-        libId: ""
+        libraryId: ""
     };
 
     const phoneRegExp = new RegExp("^[0-9]{8,}$");
+
+    const { signUpUser } = useLibApiService();
+    const navigate = useNavigate();
 
     return ( 
         <div className="SignUpPage">
@@ -40,13 +46,22 @@ function SignUpPage () {
                                     .min(6, "Minimum 6 symbols!")
                                     .required("Required field!"),
                     isWorker: Yup.boolean(),
-                    libId: Yup.string()
+                    libraryId: Yup.string()
                                 .when("isWorker", {
                                     is: true,
                                     then: Yup.string().required("Required field!")
                                 })
                 })}
-                onSubmit={ values => console.log(JSON.stringify(values, null, 2)) }
+                onSubmit={ values => {
+
+                    signUpUser(values)
+                        .then(res => navigate("/main"))
+                        .catch(err => {
+                            navigate("/error");
+                            console.log(err);
+                        });
+
+                }}
             >
                 {({ values, isSubmitting }) => (
                     <Form className="Form">
@@ -96,13 +111,13 @@ function SignUpPage () {
                         </label>
                         {values.isWorker ? 
                             <>
-                                <label htmlFor="libId">Library Identificator</label>
+                                <label htmlFor="libraryId">Library Identificator</label>
                                 <Field 
-                                    id="libId"
-                                    name="libId"
+                                    id="libraryId"
+                                    name="libraryId"
                                     type="text"
                                 />
-                                <ErrorMessage className="Error" name="libId" component="div"/>
+                                <ErrorMessage className="Error" name="libraryId" component="div"/>
                             </>
                             : null
                         }

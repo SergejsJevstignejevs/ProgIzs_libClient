@@ -1,0 +1,115 @@
+
+@import "../../../styles/Variables.scss";
+
+.MainPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    .MainContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 1000px;
+        height: 550px;
+        border-radius: 25px;
+        background-color: $main-beige;
+
+        .ViewPanel {
+            display: flex;
+            flex-direction: column;
+    
+            nav {
+                display: flex;
+                flex-direction: row;
+                text-transform: uppercase;
+                font-size: 22px;
+                margin-top: 25px;
+    
+                a {
+                    color: $main-dark-blue;
+                    text-decoration: none;
+                    padding: 10px;
+    
+                    &:hover {
+                        color: black;
+                        border-bottom: 2px solid black;
+                        transform: translateY(-5px);
+                    }
+    
+                    &.Selected {
+                        color: black;
+                        border-bottom: 2px solid black;
+                        transform: translateY(-5px);
+                    }
+                }
+            }
+    
+        }
+    
+        .BookList {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+            width: 700px;
+            height: 400px;
+            overflow-y: auto;
+
+            .Book {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                width: 600px;
+                height: 150px;
+                margin: 10px;
+                border: 1px solid $main-dark-blue;
+
+                img {
+                    display: flex;
+                    flex-direction: column;
+                    height: 128px;
+                    width: 128px;
+                    margin: 10px;
+                }
+
+                .BookInfo {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 128px;
+                    width: 300px;
+                    margin: 10px;
+
+                    span {
+                        text-transform: uppercase;
+                        margin: 10px;
+                    }
+                }
+
+                button.BookReservation {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    width: 125px;
+                    height: 50px;
+                    color: $main-beige;
+                    background-color: $main-dark-blue;
+                    border-radius: 5px;
+                    margin: 10px;
+
+                    &:hover {
+                        background-color: $sub-dark-blue;
+                    }
+                }
+            }
+        }
+    }
+
+}
