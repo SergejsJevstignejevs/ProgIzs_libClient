@@ -1,0 +1,21 @@
+@import "../../styles/Variables.scss";
+
+.MyReserationsList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0;
+    width: 700px;
+    height: 400px;
+    border: 1px solid $main-dark-blue;
+    overflow-y: auto;
+
+    .NoReservations {
+        text-transform: uppercase;
+        font-size: 22px;
+        color: $main-dark-blue;
+    }
+    
+}

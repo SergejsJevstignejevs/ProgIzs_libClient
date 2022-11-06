@@ -1,0 +1,58 @@
+@import "../../../styles/Variables.scss";
+
+.MyReservation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    height: 170px;
+    margin: 10px;
+    border: 1px solid $main-dark-blue;
+    
+    .MyReservationInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 150px;
+        width: 300px;
+        margin: 10px;
+        color: $main-dark-blue;
+
+        .MessageField {
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+
+            span {
+                width: 50%;
+                &.left {
+                    text-transform: uppercase;
+                    text-align: left;
+                }
+                &.right {
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    button.MyReservationCancel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        width: 125px;
+        height: 50px;
+        color: $main-beige;
+        background-color: $main-dark-blue;
+        border-radius: 5px;
+        margin: 10px;
+
+        &:hover {
+            background-color: $sub-dark-blue;
+        }
+    }
+
+}

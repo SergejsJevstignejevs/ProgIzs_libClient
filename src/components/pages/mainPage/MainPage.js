@@ -1,12 +1,46 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useReducer } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import NotFoundImage from "../../../resources/images/image-not-found.png";
+import { changeSelectedLink } from "../../../actions";
+import useLibApiService from "../../../hooks/libApiService.hook";
+
+import BookList from "../../bookList/BookList";
+import MyReservationsList from "../../myReservationsList/MyReservationsList";
+import MyProfile from "../../myProfile/MyProfile";
 import "./MainPage.scss";
 
 function MainPage() {
 
-    const [selectedLink, setSelectedLink] = useState(1);
+    const { selectedLinkNum } = useSelector(state => state.viewLinks);
+    const userId = useSelector(state => state.userInfo.id);
+    const userSignInInfo = useSelector(state => {
+        return ({
+            email: state.userInfo.email,
+            isWorker: state.userInfo.isWorker
+        });
+    });
+    const { setBooksInfo, initUser } = useLibApiService();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+    function handleClick() {
+        forceUpdate();
+    }
+
+    useEffect(() => {
+
+        if(userId === null){
+
+            navigate("/error");
+
+        }
+
+        setBooksInfo();
+
+    }, []);
 
     const linkInfo = [
         {text: "View Books"},
@@ -16,15 +50,18 @@ function MainPage() {
 
     const linkElements = linkInfo.map((elem, i) => {
 
-        const clazz = i === selectedLink ? "Selected" : null;
+        const clazz = i === selectedLinkNum ? "Selected" : null;
 
         return (
             <NavLink 
                 end
-                id={i}
+                key={i}
                 className={clazz}
                 to="/main"
-                onClick={() => setSelectedLink(i)}
+                onClick={() => {
+                    dispatch(changeSelectedLink(i));
+                    initUser(userSignInInfo);
+                }}
             >{elem.text}</NavLink>
         );
 
@@ -38,63 +75,15 @@ function MainPage() {
                         {linkElements}
                     </nav>
                 </div>
-                <div className="BookList">
-                    <div className="Book">
-                        <img src={NotFoundImage} alt="BookName" />
-                        <div className="BookInfo">
-                            <span>title:</span>
-                            <span>author:</span>
-                            <span>publisher:</span>
-                        </div>
-                        <button className="BookReservation">
-                            Make a Reservation
-                        </button>
-                    </div>
-                    <div className="Book">
-                        <img src={NotFoundImage} alt="BookName" />
-                        <div className="BookInfo">
-                            <span>title:</span>
-                            <span>author:</span>
-                            <span>publisher:</span>
-                        </div>
-                        <button className="BookReservation">
-                            Make a Reservation
-                        </button>
-                    </div>
-                    <div className="Book">
-                        <img src={NotFoundImage} alt="BookName" />
-                        <div className="BookInfo">
-                            <span>title:</span>
-                            <span>author:</span>
-                            <span>publisher:</span>
-                        </div>
-                        <button className="BookReservation">
-                            Make a Reservation
-                        </button>
-                    </div>
-                    <div className="Book">
-                        <img src={NotFoundImage} alt="BookName" />
-                        <div className="BookInfo">
-                            <span>title:</span>
-                            <span>author:</span>
-                            <span>publisher:</span>
-                        </div>
-                        <button className="BookReservation">
-                            Make a Reservation
-                        </button>
-                    </div>
-                    <div className="Book">
-                        <img src={NotFoundImage} alt="BookName" />
-                        <div className="BookInfo">
-                            <span>title:</span>
-                            <span>author:</span>
-                            <span>publisher:</span>
-                        </div>
-                        <button className="BookReservation">
-                            Make a Reservation
-                        </button>
-                    </div>
-                </div>
+                {selectedLinkNum === 0 ? 
+                    <BookList></BookList>
+                 : null}
+                {selectedLinkNum === 1 ?
+                    <MyReservationsList></MyReservationsList>
+                 : null}
+                {selectedLinkNum === 2 ?
+                    <MyProfile></MyProfile>
+                 : null}
             </div>
         </div>
     );

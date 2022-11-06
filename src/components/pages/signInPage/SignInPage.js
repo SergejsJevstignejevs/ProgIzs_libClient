@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import useLibApiService from "../../../hooks/libApiService";
+import useLibApiService from "../../../hooks/libApiService.hook";
 
 import BookShelfImg from "../../../resources/images/bookshelf.png";
 import "./SignInPage.scss";

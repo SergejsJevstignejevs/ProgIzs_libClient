@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import useLibApiService from "../../../hooks/libApiService";
+import useLibApiService from "../../../hooks/libApiService.hook";
 
 import "./SignUpPage.scss";
 
@@ -20,7 +20,7 @@ function SignUpPage () {
 
     const phoneRegExp = new RegExp("^[0-9]{8,}$");
 
-    const { signUpUser } = useLibApiService();
+    const { process, signUpUser } = useLibApiService();
     const navigate = useNavigate();
 
     return ( 
@@ -55,7 +55,9 @@ function SignUpPage () {
                 onSubmit={ values => {
 
                     signUpUser(values)
-                        .then(res => navigate("/main"))
+                        .then(res => {
+                            navigate("/main")
+                        })
                         .catch(err => {
                             navigate("/error");
                             console.log(err);
