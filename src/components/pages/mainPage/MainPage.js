@@ -24,12 +24,6 @@ function MainPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [, forceUpdate] = useReducer(x => x + 1, 0);
-
-    function handleClick() {
-        forceUpdate();
-    }
-
     useEffect(() => {
 
         if(userId === null){
